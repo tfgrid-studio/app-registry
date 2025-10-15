@@ -1,0 +1,81 @@
+# TFGrid App Registry
+# Official and verified applications for TFGrid Compose
+#
+# Version: 0.1.0
+# Last Updated: 2025-10-14
+
+apps:
+  official:
+    # Official TFGrid Studio Applications
+    # Maintained by tfgrid-studio team
+    # 
+    # Note: This lists deployable APPLICATIONS, not patterns.
+    # Patterns (single-vm, gateway, k3s) are built into tfgrid-compose.
+    
+    - name: tfgrid-ai-agent
+      repo: github.com/tfgrid-studio/tfgrid-ai-agent
+      description: AI coding agent with Qwen integration and loop technique
+      pattern: single-vm
+      status: production
+      version: v0.9.0
+      maintainer: tfgrid-studio
+      verified: true
+      tags:
+        - ai
+        - coding
+        - development
+        - qwen
+      requirements:
+        cpu: 4
+        memory: 8GB
+        disk: 100GB
+      links:
+        docs: https://docs.tfgrid.studio/guides/ai-agent
+        repo: https://github.com/tfgrid-studio/tfgrid-ai-agent
+  
+  verified:
+    # Verified Community Applications
+    # Submitted by community, reviewed and verified by tfgrid-studio
+    #
+    # To submit your app:
+    # 1. Follow guidelines in docs/app-guidelines.md
+    # 2. Submit PR adding your app here
+    # 3. Team reviews and verifies
+    # 4. App becomes discoverable via tfgrid-compose search
+    
+    # Example format:
+    # - name: wordpress
+    #   repo: github.com/username/tfgrid-wordpress
+    #   author: username
+    #   description: WordPress blog on ThreeFold Grid
+    #   pattern: gateway
+    #   status: beta
+    #   version: v0.1.0
+    #   verified: true
+    #   verified_date: 2025-10-14
+    #   tags: [wordpress, blog, cms]
+    #   links:
+    #     docs: https://github.com/username/tfgrid-wordpress
+    #     repo: https://github.com/username/tfgrid-wordpress
+
+# Registry Metadata
+metadata:
+  version: 0.1.0
+  last_updated: 2025-10-14
+  total_apps: 1
+  official_apps: 1
+  verified_apps: 0
+
+# About Patterns vs Apps
+#
+# PATTERNS (built into tfgrid-compose):
+# - single-vm: Single VM deployment pattern
+# - gateway: Multi-VM gateway pattern with SSL
+# - k3s: Kubernetes cluster pattern
+#
+# APPS (listed in this registry):
+# - Actual applications that USE patterns
+# - Have their own tfgrid-compose.yaml
+# - Can be deployed with: tfgrid-compose up <app-name>
+#
+# Example: tfgrid-ai-agent is an APP that uses the single-vm PATTERN
