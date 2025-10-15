@@ -149,7 +149,7 @@ Our team will:
 
 - [ ] Valid `tfgrid-compose.yaml`
 - [ ] Clear README with setup instructions
-- [ ] Open source license
+- [ ] Open source license (Apache 2.0 recommended)
 - [ ] No hardcoded secrets or credentials
 - [ ] Deploys successfully
 - [ ] Cleans up properly with `tfgrid-compose down`
