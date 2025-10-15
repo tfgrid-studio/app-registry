@@ -135,7 +135,6 @@ We welcome contributions!
 - **Issues**: [GitHub Issues](https://github.com/tfgrid-studio/app-registry/issues)
 - **Community**: [Discussions](https://github.com/tfgrid-studio/app-registry/discussions)
 
-## License
 
 Apache 2.0 License - See [LICENSE](LICENSE) for details.
 
