@@ -19,7 +19,6 @@ apps:
       status: production
       version: v0.9.0
       maintainer: tfgrid-studio
-      verified: true
       tags:
         - ai
         - coding
@@ -40,7 +39,6 @@ apps:
       status: production
       version: v1.0.0
       maintainer: tfgrid-studio
-      verified: true
       tags:
         - git
         - scm
@@ -59,13 +57,17 @@ apps:
     # Verified Community Applications
     # Submitted by community, reviewed and verified by tfgrid-studio
     #
+    # KEY DISTINCTION:
+    # - Apps under "official" = Maintained by tfgrid-studio team (NO verified field needed)
+    # - Apps under "verified" = Community submissions that passed review (HAS verified: true)
+    #
     # To submit your app:
     # 1. Follow guidelines in docs/app-guidelines.md
-    # 2. Submit PR adding your app here
+    # 2. Submit PR adding your app to this "verified" section
     # 3. Team reviews and verifies
     # 4. App becomes discoverable via tfgrid-compose search
     
-    # Example format:
+    # Example format for community apps:
     # - name: wordpress
     #   repo: github.com/username/tfgrid-wordpress
     #   author: username
@@ -73,6 +75,7 @@ apps:
     #   pattern: gateway
     #   status: beta
     #   version: v0.1.0
+    #   maintainer: username
     #   verified: true
     #   verified_date: 2025-10-14
     #   tags: [wordpress, blog, cms]
@@ -88,16 +91,31 @@ metadata:
   official_apps: 2
   verified_apps: 0
 
-# About Patterns vs Apps
+# Registry Structure Explanation
 #
 # PATTERNS (built into tfgrid-compose):
 # - single-vm: Single VM deployment pattern
 # - gateway: Multi-VM gateway pattern with SSL
 # - k3s: Kubernetes cluster pattern
+# These are NOT in this registry - they're part of tfgrid-compose
 #
 # APPS (listed in this registry):
-# - Actual applications that USE patterns
-# - Have their own tfgrid-compose.yaml
-# - Can be deployed with: tfgrid-compose up <app-name>
+# Two categories:
 #
-# Example: tfgrid-ai-agent is an APP that uses the single-vm PATTERN
+# 1. OFFICIAL APPS (apps.official):
+#    - Maintained by tfgrid-studio team
+#    - Production quality and support
+#    - NO "verified" field needed (location = official)
+#    - Example: tfgrid-ai-agent, tfgrid-gitea
+#
+# 2. VERIFIED APPS (apps.verified):
+#    - Community-submitted applications
+#    - Reviewed and verified by tfgrid-studio
+#    - HAS "verified: true" field
+#    - Maintained by original authors
+#    - Example: tfgrid-wordpress (future)
+#
+# All apps:
+# - Have their own tfgrid-compose.yaml
+# - Use one of the patterns above
+# - Can be deployed with: tfgrid-compose up <app-name>
