@@ -53,32 +53,36 @@ apps:
         docs: https://docs.tfgrid.studio/guides/gitea
         repo: https://github.com/tfgrid-studio/tfgrid-gitea
   
-  verified:
-    # Verified Community Applications
-    # Submitted by community, reviewed and verified by tfgrid-studio
+  community:
+    # Community Applications
+    # Submitted by community members, reviewed and approved by tfgrid-studio team
     #
     # KEY DISTINCTION:
-    # - Apps under "official" = Maintained by tfgrid-studio team (NO verified field needed)
-    # - Apps under "verified" = Community submissions that passed review (HAS verified: true)
+    # - Apps under "official" = Maintained by tfgrid-studio team (badge: "Official")
+    # - Apps under "community" = Community submissions that passed review (badge: "Community")
     #
     # To submit your app:
     # 1. Follow guidelines in docs/app-guidelines.md
-    # 2. Submit PR adding your app to this "verified" section
-    # 3. Team reviews and verifies
-    # 4. App becomes discoverable via tfgrid-compose search
+    # 2. Submit PR adding your app to this "community" section
+    # 3. tfgrid-studio team reviews for quality, security, and functionality
+    # 4. Once approved, app becomes discoverable via tfgrid-compose search
+    # 5. You maintain your app, tfgrid-studio provides platform support
     
     # Example format for community apps:
     # - name: wordpress
     #   repo: github.com/username/tfgrid-wordpress
     #   author: username
+    #   maintainer: username
     #   description: WordPress blog on ThreeFold Grid
     #   pattern: gateway
     #   status: beta
     #   version: v0.1.0
-    #   maintainer: username
-    #   verified: true
-    #   verified_date: 2025-10-14
+    #   submitted_date: 2025-10-14
     #   tags: [wordpress, blog, cms]
+    #   requirements:
+    #     cpu: 2
+    #     memory: 4GB
+    #     disk: 25GB
     #   links:
     #     docs: https://github.com/username/tfgrid-wordpress
     #     repo: https://github.com/username/tfgrid-wordpress
@@ -89,7 +93,7 @@ metadata:
   last_updated: 2025-10-15
   total_apps: 2
   official_apps: 2
-  verified_apps: 0
+  community_apps: 0
 
 # Registry Structure Explanation
 #
@@ -104,18 +108,24 @@ metadata:
 #
 # 1. OFFICIAL APPS (apps.official):
 #    - Maintained by tfgrid-studio team
-#    - Production quality and support
-#    - NO "verified" field needed (location = official)
+#    - Production quality and full support
+#    - Badge: "Official" in UI
 #    - Example: tfgrid-ai-agent, tfgrid-gitea
 #
-# 2. VERIFIED APPS (apps.verified):
-#    - Community-submitted applications
-#    - Reviewed and verified by tfgrid-studio
-#    - HAS "verified: true" field
-#    - Maintained by original authors
+# 2. COMMUNITY APPS (apps.community):
+#    - Submitted and maintained by community members
+#    - Reviewed and approved by tfgrid-studio team
+#    - Badge: "Community" in UI
+#    - Quality checked but supported by original author
 #    - Example: tfgrid-wordpress (future)
 #
 # All apps:
 # - Have their own tfgrid-compose.yaml
 # - Use one of the patterns above
 # - Can be deployed with: tfgrid-compose up <app-name>
+#
+# Terminology Note:
+# We use "Community" instead of "Verified" because:
+# - Clearer distinction: Official (by team) vs Community (by users)
+# - Less confusing: "Verified" sounds like it could apply to official apps too
+# - More welcoming: Celebrates community contributions
