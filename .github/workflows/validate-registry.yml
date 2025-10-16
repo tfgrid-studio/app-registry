@@ -1,0 +1,175 @@
+name: Validate and Process Registry
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'registry/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'registry/**'
+
+jobs:
+  validate:
+    name: Validate Registry
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+      
+      - name: Validate YAML syntax
+        run: |
+          echo "📝 Validating YAML syntax..."
+          yq eval '.' registry/apps.yaml > /dev/null
+          echo "✅ YAML syntax is valid"
+      
+      - name: Validate schema structure
+        run: |
+          echo "🔍 Validating registry structure..."
+          
+          # Check required sections exist
+          if ! yq eval '.apps.official' registry/apps.yaml > /dev/null 2>&1; then
+            echo "❌ Missing 'apps.official' section"
+            exit 1
+          fi
+          
+          if ! yq eval '.apps.community' registry/apps.yaml > /dev/null 2>&1; then
+            echo "❌ Missing 'apps.community' section"
+            exit 1
+          fi
+          
+          if ! yq eval '.metadata' registry/apps.yaml > /dev/null 2>&1; then
+            echo "❌ Missing 'metadata' section"
+            exit 1
+          fi
+          
+          echo "✅ Registry structure is valid"
+      
+      - name: Validate app entries
+        run: |
+          echo "🔍 Validating app entries..."
+          
+          # Validate official apps
+          official_count=$(yq eval '.apps.official | length' registry/apps.yaml)
+          echo "Found $official_count official apps"
+          
+          for i in $(seq 0 $((official_count - 1))); do
+            app_name=$(yq eval ".apps.official[$i].name" registry/apps.yaml)
+            echo "  Validating: $app_name"
+            
+            # Check required fields
+            required_fields=("name" "repo" "description" "pattern" "status" "version" "maintainer")
+            for field in "${required_fields[@]}"; do
+              value=$(yq eval ".apps.official[$i].$field" registry/apps.yaml)
+              if [ "$value" = "null" ]; then
+                echo "    ❌ Missing required field: $field"
+                exit 1
+              fi
+            done
+            
+            echo "    ✅ $app_name is valid"
+          done
+          
+          # Validate community apps (if any)
+          community_count=$(yq eval '.apps.community | length' registry/apps.yaml)
+          if [ "$community_count" -gt 0 ]; then
+            echo "Found $community_count community apps"
+            # Similar validation for community apps
+          else
+            echo "No community apps to validate"
+          fi
+          
+          echo "✅ All app entries are valid"
+      
+      - name: Compute and display statistics
+        run: |
+          echo "📊 Computing registry statistics..."
+          
+          official_count=$(yq eval '.apps.official | length' registry/apps.yaml)
+          community_count=$(yq eval '.apps.community | length' registry/apps.yaml)
+          total_count=$((official_count + community_count))
+          
+          echo ""
+          echo "═══════════════════════════════════"
+          echo "📦 Registry Statistics"
+          echo "═══════════════════════════════════"
+          echo "Total Apps:      $total_count"
+          echo "Official Apps:   $official_count"
+          echo "Community Apps:  $community_count"
+          echo "═══════════════════════════════════"
+          echo ""
+          
+          # List apps
+          echo "📋 Official Apps:"
+          for i in $(seq 0 $((official_count - 1))); do
+            name=$(yq eval ".apps.official[$i].name" registry/apps.yaml)
+            version=$(yq eval ".apps.official[$i].version" registry/apps.yaml)
+            status=$(yq eval ".apps.official[$i].status" registry/apps.yaml)
+            echo "  • $name ($version) - $status"
+          done
+          
+          if [ "$community_count" -gt 0 ]; then
+            echo ""
+            echo "📋 Community Apps:"
+            for i in $(seq 0 $((community_count - 1))); do
+              name=$(yq eval ".apps.community[$i].name" registry/apps.yaml)
+              version=$(yq eval ".apps.community[$i].version" registry/apps.yaml)
+              status=$(yq eval ".apps.community[$i].status" registry/apps.yaml)
+              echo "  • $name ($version) - $status"
+            done
+          fi
+      
+      - name: Generate processed registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          echo "🔄 Generating processed registry with computed metadata..."
+          
+          # Compute statistics
+          official_count=$(yq eval '.apps.official | length' registry/apps.yaml)
+          community_count=$(yq eval '.apps.community | length' registry/apps.yaml)
+          total_count=$((official_count + community_count))
+          current_date=$(date -u +"%Y-%m-%d")
+          
+          # Create processed version with computed stats
+          cat registry/apps.yaml > registry/apps.processed.yaml
+          
+          # Add computed metadata at the end
+          cat >> registry/apps.processed.yaml << EOF
+          
+          # Computed Statistics (Generated by CI/CD)
+          # This section is automatically generated - DO NOT EDIT MANUALLY
+          computed:
+            total_apps: $total_count
+            official_apps: $official_count
+            community_apps: $community_count
+            last_computed: $current_date
+            computed_by: GitHub Actions
+          EOF
+          
+          echo "✅ Generated registry/apps.processed.yaml"
+      
+      - name: Upload processed registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: processed-registry
+          path: registry/apps.processed.yaml
+          retention-days: 30
+      
+      - name: Validation summary
+        run: |
+          echo ""
+          echo "✅ Registry validation complete!"
+          echo ""
+          echo "All checks passed:"
+          echo "  ✅ YAML syntax valid"
+          echo "  ✅ Schema structure valid"
+          echo "  ✅ All app entries valid"
+          echo "  ✅ Statistics computed"

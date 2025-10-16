@@ -88,12 +88,11 @@ apps:
     #     repo: https://github.com/username/tfgrid-wordpress
 
 # Registry Metadata
+# Note: App counts are computed dynamically by the parser, not stored here
 metadata:
   version: 0.1.0
   last_updated: 2025-10-15
-  total_apps: 2
-  official_apps: 2
-  community_apps: 0
+  schema_version: "1.0"
 
 # Registry Structure Explanation
 #
@@ -129,3 +128,10 @@ metadata:
 # - Clearer distinction: Official (by team) vs Community (by users)
 # - Less confusing: "Verified" sounds like it could apply to official apps too
 # - More welcoming: Celebrates community contributions
+#
+# Parser Implementation Note:
+# The parser (e.g., in tfgrid-compose or registry-www) should compute these dynamically:
+#   total_apps = len(apps.official) + len(apps.community)
+#   official_apps = len(apps.official)
+#   community_apps = len(apps.community)
+# This ensures counts are always accurate without manual updates.

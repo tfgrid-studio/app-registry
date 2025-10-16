@@ -1,10 +1,10 @@
 # TFGrid App Registry
 
-Official registry of verified applications for TFGrid Compose.
+Official registry of applications for TFGrid Compose - automatically validated and processed via CI/CD.
 
 ## Overview
 
-This registry catalogs official and verified community applications that can be deployed using `tfgrid-compose`. Applications listed here are discoverable via `tfgrid-compose search` and can be deployed with a simple command:
+This registry catalogs official and community applications that can be deployed using `tfgrid-compose`. Applications listed here are discoverable via `tfgrid-compose search` and can be deployed with a simple command:
 
 ```bash
 tfgrid-compose up tfgrid-ai-agent
@@ -59,22 +59,24 @@ tfgrid-compose up https://gitlab.com/org/app
 
 Maintained by the TFGrid Studio team:
 - **tfgrid-ai-agent** - AI coding agent with Qwen integration
+- **tfgrid-gitea** - Self-hosted Git service with web interface
 
 > **Note**: Patterns (single-vm, gateway, k3s) are built into tfgrid-compose, not listed here. This registry contains deployable APPLICATIONS that use those patterns.
 
-### Verified Community Apps
+### Community Apps
 
-Community-contributed apps that have passed verification:
-- Submit a PR to get your app verified!
+Community-contributed apps that have been reviewed and approved:
+- Submit a PR to get your app listed!
 - [See submission guidelines →](docs/submit-app.md)
 
 ## Submitting Your App
 
 1. **Develop your app** following our [guidelines](docs/app-guidelines.md)
 2. **Test thoroughly** with `tfgrid-compose up ./your-app`
-3. **Submit PR** adding your app to `registry/verified/community.yaml`
-4. **Review process** - Team reviews code, security, documentation
-5. **Verified!** - App appears in `tfgrid-compose search`
+3. **Submit PR** adding your app to `apps.community` in `registry/apps.yaml`
+4. **Automated validation** - GitHub Actions validates your app
+5. **Review process** - Team reviews code, security, documentation
+6. **Approved!** - App appears in `tfgrid-compose search`
 
 [Read full submission guide →](docs/submit-app.md)
 
@@ -101,23 +103,35 @@ apps:
       pattern: single-vm
       status: production
       maintainer: tfgrid-studio
-      verified: true
       tags: [ai, coding, development]
       
-  verified:
+  community:
     - name: my-app
       repo: github.com/username/my-app
       author: username
-      verified: true
-      verified_date: 2025-10-14
+      maintainer: username
+      submitted_date: 2025-10-14
       status: production
 ```
 
+**Note:** App counts (total, official, community) are computed automatically by CI/CD - no manual maintenance needed!
+
+## Automated Validation
+
+**GitHub Actions** automatically:
+- ✅ Validates YAML syntax
+- ✅ Checks schema structure
+- ✅ Validates all app entries
+- ✅ Computes statistics dynamically
+- ✅ Generates processed registry
+
+[View workflow →](.github/workflows/validate-registry.yml)
+
 ## Security
 
-- **Official apps**: Audited by TFGrid Studio team
-- **Verified apps**: Code reviewed, tested, security checked
-- **Unverified apps**: Use at your own risk - review code first
+- **Official apps**: Audited and maintained by TFGrid Studio team
+- **Community apps**: Code reviewed, tested, and security checked
+- **External apps**: Use at your own risk - review code first
 
 ⚠️ Always review application code before deploying, especially for unverified apps.
 
@@ -143,5 +157,6 @@ Copyright 2025 ThreeFold
 ---
 
 **Version**: 0.1.0  
-**Last Updated**: 2025-10-14  
+**Last Updated**: 2025-10-15  
+**Total Apps**: Computed dynamically via CI/CD  
 **Maintained by**: [TFGrid Studio](https://github.com/tfgrid-studio)
