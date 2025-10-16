@@ -32,6 +32,28 @@ apps:
       links:
         docs: https://docs.tfgrid.studio/guides/ai-agent
         repo: https://github.com/tfgrid-studio/tfgrid-ai-agent
+    
+    - name: tfgrid-gitea
+      repo: github.com/tfgrid-studio/tfgrid-gitea
+      description: Self-hosted Git service with web interface - perfect for AI agent repos
+      pattern: single-vm
+      status: production
+      version: v1.0.0
+      maintainer: tfgrid-studio
+      verified: true
+      tags:
+        - git
+        - scm
+        - repository
+        - collaboration
+        - gitea
+      requirements:
+        cpu: 2
+        memory: 4GB
+        disk: 50GB
+      links:
+        docs: https://docs.tfgrid.studio/guides/gitea
+        repo: https://github.com/tfgrid-studio/tfgrid-gitea
   
   verified:
     # Verified Community Applications
@@ -61,9 +83,9 @@ apps:
 # Registry Metadata
 metadata:
   version: 0.1.0
-  last_updated: 2025-10-14
-  total_apps: 1
-  official_apps: 1
+  last_updated: 2025-10-15
+  total_apps: 2
+  official_apps: 2
   verified_apps: 0
 
 # About Patterns vs Apps
