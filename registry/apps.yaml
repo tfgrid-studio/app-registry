@@ -118,6 +118,9 @@ metadata:
   last_updated: 2025-10-22
   schema_version: "1.0"
 
+# Note: tfgrid-ai-stack pattern is now built into tfgrid-compose
+# The app registry entry points to the app wrapper that references the pattern
+
 # Registry Structure Explanation
 #
 # PATTERNS (built into tfgrid-compose):
