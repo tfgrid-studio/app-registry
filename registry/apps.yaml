@@ -53,37 +53,6 @@ apps:
         docs: https://docs.tfgrid.studio/guides/gitea
         repo: https://github.com/tfgrid-studio/tfgrid-gitea
 
-    - name: tfgrid-ai-stack
-      repo: github.com/tfgrid-studio/tfgrid-compose
-      path: patterns/tfgrid-ai-stack
-      description: Complete AI-powered development platform - AI generation, Git hosting, and auto-deployment
-      pattern: multi-vm
-      status: beta
-      version: v0.12.0-dev
-      maintainer: tfgrid-studio
-      tags:
-        - ai
-        - development
-        - platform
-        - automation
-        - git
-        - deployment
-        - enterprise
-      requirements:
-        cpu: 8
-        memory: 16GB
-        disk: 200GB
-        vms: 3
-      features:
-        - AI code generation
-        - Integrated Gitea hosting
-        - Automatic deployment
-        - Dynamic routing
-        - Multi-project support
-      links:
-        docs: https://docs.tfgrid.studio/guides/tfgrid-ai-stack
-        repo: https://github.com/tfgrid-studio/tfgrid-compose/tree/main/patterns/tfgrid-ai-stack
-        quickstart: https://github.com/tfgrid-studio/tfgrid-compose/blob/main/patterns/tfgrid-ai-stack/QUICKSTART.md
   
   community:
     # Community Applications
