@@ -53,6 +53,28 @@ apps:
         docs: https://docs.tfgrid.studio/guides/gitea
         repo: https://github.com/tfgrid-studio/tfgrid-gitea
 
+    - name: tfgrid-ai-stack
+      repo: github.com/tfgrid-studio/tfgrid-compose
+      description: AI-powered development platform with integrated Git hosting and deployment
+      pattern: tfgrid-ai-stack
+      status: beta
+      version: v0.12.0-dev
+      maintainer: tfgrid-studio
+      tags:
+        - ai
+        - development
+        - git
+        - automation
+        - monitoring
+        - multi-vm
+      requirements:
+        cpu: 8
+        memory: 16GB
+        disk: 200GB
+      links:
+        docs: https://docs.tfgrid.studio/patterns/tfgrid-ai-stack
+        repo: https://github.com/tfgrid-studio/tfgrid-compose
+
   
   community:
     # Community Applications
@@ -92,7 +114,7 @@ apps:
 # Note: App counts are computed dynamically by the parser, not stored here
 metadata:
   version: 0.1.0
-  last_updated: 2025-10-15
+  last_updated: 2025-10-22
   schema_version: "1.0"
 
 # Registry Structure Explanation
@@ -101,6 +123,7 @@ metadata:
 # - single-vm: Single VM deployment pattern
 # - gateway: Multi-VM gateway pattern with SSL
 # - k3s: Kubernetes cluster pattern
+# - tfgrid-ai-stack: AI-powered development platform (multi-VM)
 # These are NOT in this registry - they're part of tfgrid-compose
 #
 # APPS (listed in this registry):
@@ -110,7 +133,7 @@ metadata:
 #    - Maintained by tfgrid-studio team
 #    - Production quality and full support
 #    - Badge: "Official" in UI
-#    - Example: tfgrid-ai-agent, tfgrid-gitea
+#    - Example: tfgrid-ai-agent, tfgrid-gitea, tfgrid-ai-stack
 #
 # 2. COMMUNITY APPS (apps.community):
 #    - Submitted and maintained by community members
