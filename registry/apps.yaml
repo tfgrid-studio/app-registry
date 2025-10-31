@@ -58,7 +58,7 @@ apps:
       description: AI-powered development platform with integrated Git hosting and deployment
       pattern: single-vm
       status: production
-      version: v0.12.0-dev
+      version: v0.13.0
       maintainer: tfgrid-studio
       tags:
         - ai
