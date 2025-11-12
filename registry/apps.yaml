@@ -1,8 +1,9 @@
 # TFGrid App Registry
 # Official and verified applications for TFGrid Compose
 #
-# Version: 0.1.0
-# Last Updated: 2025-10-14
+# Version: 0.2.0
+# Last Updated: 2025-11-12
+# Schema: Git-Based Cache Management v2.0
 
 apps:
   official:
@@ -61,8 +62,23 @@ apps:
       pattern: single-vm
       status: production
       version: v0.13.0
-      cache_version: "1.0.0"
+      cache_version: "2.0.0"  # Git-based cache with commit tracking
       maintainer: tfgrid-studio
+      commands:
+        create: "Create new AI coding project (interactive)"
+        run: "Start agent loop for project"
+        publish: "Publish project for web hosting"
+        monitor: "Monitor project progress"
+        projects: "Show all projects status"
+        login: "Authenticate with Qwen"
+        status: "Show system status"
+        backup: "Trigger manual backup"
+      cache_metadata:
+        git_tracking: true
+        auto_refresh: true
+        health_check: true
+        last_commit_check: "2025-11-12"
+        migration_ready: true
       tags:
         - ai
         - development
@@ -70,6 +86,7 @@ apps:
         - automation
         - monitoring
         - single-vm
+        - enhanced-cache
       requirements:
         cpu: 8
         memory: 16GB
@@ -77,6 +94,8 @@ apps:
       links:
         docs: https://docs.tfgrid.studio/guides/tfgrid-ai-stack/
         repo: https://github.com/tfgrid-studio/tfgrid-ai-stack
+        workflow: https://docs.tfgrid.studio/guides/enhanced-workflow/
+        cache_guide: https://docs.tfgrid.studio/guides/cache-management/
 
 
   
