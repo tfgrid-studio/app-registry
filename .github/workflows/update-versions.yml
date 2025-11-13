@@ -6,6 +6,8 @@ on:
     paths:
       - 'registry/apps.yaml'
       - 'scripts/update_versions.sh'
+  repository_dispatch:
+    types: [app-updated]
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
