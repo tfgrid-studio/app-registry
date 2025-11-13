@@ -18,7 +18,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.REGISTRY_UPDATE_TOKEN || secrets.GITHUB_TOKEN }}
         fetch-depth: 0  # Full history for git operations
     
     - name: Setup Git
@@ -60,9 +60,12 @@ jobs:
     - name: Commit and push changes
       if: steps.verify-changed-files.outputs.changed == 'true'
       run: |
+        echo "Committing changes..."
         git add registry/apps.yaml
-        git commit -m "chore: auto-update app versions [skip ci]" || exit 0
-        git push || echo "Push failed - possibly no changes to commit"
+        git status
+        git commit -m "chore: auto-update app versions [skip ci]" || (echo "Commit failed" && exit 1)
+        echo "Pushing changes..."
+        git push || (echo "Push failed with GITHUB_TOKEN, trying with PAT..." && exit 1)
     
     - name: Validate app entries
       run: |
