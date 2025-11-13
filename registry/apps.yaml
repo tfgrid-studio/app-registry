@@ -1,188 +1,70 @@
-# TFGrid App Registry
-# Official and verified applications for TFGrid Compose
-#
-# Version: 0.2.0
-# Last Updated: 2025-11-12
-# Schema: Git-Based Cache Management v2.0
+# TFGrid Compose App Registry
+# Enhanced with Git commit-based versioning support
 
+metadata:
+  version: "2.0.0"  # Registry schema version
+  last_updated: "2025-11-13"
+  description: "Official registry of TFGrid Compose applications with Git commit versioning"
+  versioning_strategy: "git_commit"  # NEW: Indicates Git commit is primary version
+
+# Official TFGrid Studio Applications
 apps:
   official:
-    # Official TFGrid Studio Applications
-    # Maintained by tfgrid-studio team
-    # 
-    # Note: This lists deployable APPLICATIONS, not patterns.
-    # Patterns (single-vm, gateway, k3s) are built into tfgrid-compose.
-    
-    - name: tfgrid-ai-agent
-      repo: github.com/tfgrid-studio/tfgrid-ai-agent
-      description: AI coding agent with Qwen integration and loop technique
-      pattern: single-vm
-      status: production
-      version: v0.3.0
-      cache_version: "1.0.0"
-      maintainer: tfgrid-studio
-      tags:
-        - ai
-        - coding
-        - development
-        - qwen
-      requirements:
-        cpu: 4
-        memory: 8GB
-        disk: 100GB
-      links:
-        docs: https://docs.tfgrid.studio/guides/tfgrid-ai-agent/
-        repo: https://github.com/tfgrid-studio/tfgrid-ai-agent
-    
-    - name: tfgrid-gitea
-      repo: github.com/tfgrid-studio/tfgrid-gitea
-      description: Self-hosted Git service with web interface - perfect for AI agent repos
-      pattern: single-vm
-      status: production
-      version: v1.0.0
-      cache_version: "1.0.0"
-      maintainer: tfgrid-studio
-      tags:
-        - git
-        - scm
-        - repository
-        - collaboration
-        - gitea
-      requirements:
-        cpu: 2
-        memory: 4GB
-        disk: 50GB
-      links:
-        docs: https://docs.tfgrid.studio/guides/tfgrid-gitea/
-        repo: https://github.com/tfgrid-studio/tfgrid-gitea
-
     - name: tfgrid-ai-stack
       repo: github.com/tfgrid-studio/tfgrid-ai-stack
-      description: AI-powered development platform with integrated Git hosting and deployment
+      description: "AI development environment with integrated coding agent"
       pattern: single-vm
       status: production
-      version: v0.13.0
-      cache_version: "2.0.0"  # Git-based cache with commit tracking
       maintainer: tfgrid-studio
-      commands:
-        create: "Create new AI coding project (interactive)"
-        run: "Start agent loop for project"
-        publish: "Publish project for web hosting"
-        monitor: "Monitor project progress"
-        projects: "Show all projects status"
-        login: "Authenticate with Qwen"
-        status: "Show system status"
-        backup: "Trigger manual backup"
-      cache_metadata:
-        git_tracking: true
-        auto_refresh: true
-        health_check: true
-        last_commit_check: "2025-11-12"
-        migration_ready: true
-      tags:
-        - ai
-        - development
-        - git
-        - automation
-        - monitoring
-        - single-vm
-        - enhanced-cache
-      requirements:
-        cpu: 8
-        memory: 16GB
-        disk: 200GB
-      links:
-        docs: https://docs.tfgrid.studio/guides/tfgrid-ai-stack/
-        repo: https://github.com/tfgrid-studio/tfgrid-ai-stack
-        workflow: https://docs.tfgrid.studio/guides/enhanced-workflow/
-        cache_guide: https://docs.tfgrid.studio/guides/cache-management/
+      tags: [ai, development, coding, python]
+      
+      # Enhanced versioning with Git commit support
+      versioning:
+        primary: git_commit      # Git commit hash is primary version
+        fallback: semantic       # Semantic version as fallback
+        auto_update: true        # Auto-update when new commits available
+        
+      # Git tracking metadata
+      git:
+        default_branch: main
+        tracking: true          # Track commit changes automatically
+        auto_cache_refresh: true # Refresh cache when commits change
+        
+    - name: tfgrid-ai-agent
+      repo: github.com/tfgrid-studio/tfgrid-ai-agent
+      description: "AI coding agent with Qwen integration"
+      pattern: single-vm
+      status: production
+      maintainer: tfgrid-studio
+      tags: [ai, coding, agent, qwen]
+      
+      versioning:
+        primary: git_commit
+        fallback: semantic
+        auto_update: true
+        
+      git:
+        default_branch: main
+        tracking: true
+        auto_cache_refresh: true
+        
+    - name: tfgrid-gitea
+      repo: github.com/tfgrid-studio/tfgrid-gitea
+      description: "Self-hosted Git service with web interface"
+      pattern: single-vm
+      status: production
+      maintainer: tfgrid-studio
+      tags: [git, code, hosting, self-hosted]
+      
+      versioning:
+        primary: git_commit
+        fallback: semantic
+        auto_update: true
+        
+      git:
+        default_branch: main
+        tracking: true
+        auto_cache_refresh: true
 
-
-  
-  community:
-    # Community Applications
-    # Submitted by community members, reviewed and approved by tfgrid-studio team
-    #
-    # KEY DISTINCTION:
-    # - Apps under "official" = Maintained by tfgrid-studio team (badge: "Official")
-    # - Apps under "community" = Community submissions that passed review (badge: "Community")
-    #
-    # To submit your app:
-    # 1. Follow guidelines in docs/app-guidelines.md
-    # 2. Submit PR adding your app to this "community" section
-    # 3. tfgrid-studio team reviews for quality, security, and functionality
-    # 4. Once approved, app becomes discoverable via tfgrid-compose search
-    # 5. You maintain your app, tfgrid-studio provides platform support
-    
-    # Example format for community apps:
-    # - name: wordpress
-    #   repo: github.com/username/tfgrid-wordpress
-    #   author: username
-    #   maintainer: username
-    #   description: WordPress blog on ThreeFold Grid
-    #   pattern: gateway
-    #   status: beta
-    #   version: v0.1.0
-    #   submitted_date: 2025-10-14
-    #   tags: [wordpress, blog, cms]
-    #   requirements:
-    #     cpu: 2
-    #     memory: 4GB
-    #     disk: 25GB
-    #   links:
-    #     docs: https://github.com/username/tfgrid-wordpress
-    #     repo: https://github.com/username/tfgrid-wordpress
-
-# Registry Metadata
-# Note: App counts are computed dynamically by the parser, not stored here
-metadata:
-  version: 0.1.0
-  last_updated: 2025-10-22
-  schema_version: "1.0"
-  registry_updated: true
-
-# Note: tfgrid-ai-stack pattern is now built into tfgrid-compose
-# The app registry entry points to the app wrapper that references the pattern
-
-# Registry Structure Explanation
-#
-# PATTERNS (built into tfgrid-compose):
-# - single-vm: Single VM deployment pattern
-# - gateway: Multi-VM gateway pattern with SSL
-# - k3s: Kubernetes cluster pattern
-# - tfgrid-ai-stack: AI-powered development platform (multi-VM)
-# These are NOT in this registry - they're part of tfgrid-compose
-#
-# APPS (listed in this registry):
-# Two categories:
-#
-# 1. OFFICIAL APPS (apps.official):
-#    - Maintained by tfgrid-studio team
-#    - Production quality and full support
-#    - Badge: "Official" in UI
-#    - Example: tfgrid-ai-agent, tfgrid-gitea, tfgrid-ai-stack
-#
-# 2. COMMUNITY APPS (apps.community):
-#    - Submitted and maintained by community members
-#    - Reviewed and approved by tfgrid-studio team
-#    - Badge: "Community" in UI
-#    - Quality checked but supported by original author
-#    - Example: tfgrid-wordpress (future)
-#
-# All apps:
-# - Have their own tfgrid-compose.yaml
-# - Use one of the patterns above
-# - Can be deployed with: tfgrid-compose up <app-name>
-#
-# Terminology Note:
-# We use "Community" instead of "Verified" because:
-# - Clearer distinction: Official (by team) vs Community (by users)
-# - Less confusing: "Verified" sounds like it could apply to official apps too
-# - More welcoming: Celebrates community contributions
-#
-# Parser Implementation Note:
-# The parser (e.g., in tfgrid-compose or registry-www) should compute these dynamically:
-#   total_apps = len(apps.official) + len(apps.community)
-#   official_apps = len(apps.official)
-#   community_apps = len(apps.community)
-# This ensures counts are always accurate without manual updates.
+  # Community apps would follow same structure
+  community: []
