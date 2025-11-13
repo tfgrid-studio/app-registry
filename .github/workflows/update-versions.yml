@@ -1,0 +1,106 @@
+name: Auto-Update App Versions
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'registry/apps.yaml'
+      - 'scripts/update_versions.sh'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  update-versions:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0  # Full history for git operations
+    
+    - name: Setup Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+    
+    - name: Run version update script
+      run: |
+        chmod +x scripts/update_versions.sh
+        ./scripts/update_versions.sh
+    
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "Files have been modified"
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "No files were changed"
+        fi
+    
+    - name: Commit and push changes
+      if: steps.verify-changed-files.outputs.changed == 'true'
+      run: |
+        git add registry/apps.yaml
+        git commit -m "chore: auto-update app versions [skip ci]" || exit 0
+        git push || echo "Push failed - possibly no changes to commit"
+    
+    - name: Validate app entries
+      run: |
+        echo "🔍 Validating app entries..."
+        
+        # Count official apps
+        official_count=$(grep -A 50 "apps:" registry/apps.yaml | grep -c "name:" || echo "0")
+        echo "Found $official_count official apps"
+        
+        # Validate each app has required fields
+        apps=("tfgrid-ai-stack" "tfgrid-ai-agent" "tfgrid-gitea")
+        validation_passed=true
+        
+        for app in "${apps[@]}"; do
+          echo "  Validating: $app"
+          
+          # Check if app exists in registry
+          if ! grep -A 20 "$app" registry/apps.yaml | grep -q "name: $app"; then
+            echo "    ❌ Missing app definition"
+            validation_passed=false
+            continue
+          fi
+          
+          # Check version field
+          if ! grep -A 20 "$app" registry/apps.yaml | grep -q "version:"; then
+            echo "    ❌ Missing required field: version"
+            validation_passed=false
+          else
+            version=$(grep -A 20 "$app" registry/apps.yaml | grep "version:" | head -1 | sed 's/.*version: *//' | sed 's/[[:space:]].*//')
+            echo "    ✅ version: $version"
+          fi
+          
+          # Check repo field
+          if ! grep -A 20 "$app" registry/apps.yaml | grep -q "repo:"; then
+            echo "    ❌ Missing required field: repo"
+            validation_passed=false
+          fi
+          
+          # Check versioning structure
+          if ! grep -A 20 "$app" registry/apps.yaml | grep -A 3 "versioning:" | grep -q "primary:"; then
+            echo "    ❌ Missing versioning.primary field"
+            validation_passed=false
+          fi
+        done
+        
+        echo ""
+        if [ "$validation_passed" = true ]; then
+          echo "✅ All app entries validated successfully!"
+        else
+          echo "❌ App validation failed"
+          exit 1
+        fi
+    
+    - name: Show git status
+      if: always()
+      run: |
+        echo "Final git status:"
+        git status --porcelain

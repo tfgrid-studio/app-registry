@@ -124,8 +124,35 @@ apps:
 - ✅ Validates all app entries
 - ✅ Computes statistics dynamically
 - ✅ Generates processed registry
+- ✅ **Auto-updates app versions** with latest Git commits
+- ✅ **Maintains version compatibility** with existing validation
 
-[View workflow →](.github/workflows/validate-registry.yml)
+[View workflows →](.github/workflows/)
+- [Update Versions](.github/workflows/update-versions.yml) - Auto-updates version fields
+- [Validate Registry](.github/workflows/validate-registry.yml) - Validates registry format
+
+## Automated Version Management
+
+**Version fields are automatically updated** when you push to this repository:
+
+1. **Trigger**: Push changes to `main` branch
+2. **Process**: Fetches latest commits from all app repositories:
+   - `tfgrid-ai-stack`
+   - `tfgrid-ai-agent`
+   - `tfgrid-gitea`
+3. **Update**: Sets `version` field to latest commit hash
+4. **Validate**: Ensures all required fields exist
+5. **Commit**: Saves changes back to repository (if versions changed)
+
+**Format**:
+```yaml
+- name: tfgrid-ai-stack
+  version: b21ad74           # Auto-updated commit hash
+  versioning:
+    primary: git_commit      # Git commit hash is primary version
+```
+
+This ensures `tfgrid-compose` always gets the latest versions while maintaining validation compatibility.
 
 ## Security
 

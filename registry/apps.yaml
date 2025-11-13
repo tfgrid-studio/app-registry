@@ -17,6 +17,7 @@ apps:
       status: production
       maintainer: tfgrid-studio
       tags: [ai, development, coding, python]
+      version: b21ad74           # Latest Git commit for validation compatibility
       
       # Enhanced versioning with Git commit support
       versioning:
@@ -37,6 +38,7 @@ apps:
       status: production
       maintainer: tfgrid-studio
       tags: [ai, coding, agent, qwen]
+      version: 0e91178           # Latest Git commit for validation compatibility
       
       versioning:
         primary: git_commit
@@ -55,6 +57,7 @@ apps:
       status: production
       maintainer: tfgrid-studio
       tags: [git, code, hosting, self-hosted]
+      version: 4a7a91d           # Latest Git commit for validation compatibility
       
       versioning:
         primary: git_commit
