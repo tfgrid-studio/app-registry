@@ -26,6 +26,11 @@ jobs:
     
     - name: Run version update script
       run: |
+        echo "Current working directory: $(pwd)"
+        echo "Available files:"
+        ls -la
+        echo ""
+        echo "Running update script..."
         chmod +x scripts/update_versions.sh
         ./scripts/update_versions.sh
     

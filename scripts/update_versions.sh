@@ -5,7 +5,7 @@
 
 set -e
 
-REGISTRY_FILE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/registry/apps.yaml"
+REGISTRY_FILE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/registry/apps.yaml"
 BACKUP_FILE="${REGISTRY_FILE}.backup.$(date +%s)"
 
 # Function to get latest commit hash from a repository
