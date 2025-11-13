@@ -1,73 +1,68 @@
-# TFGrid Compose App Registry
-# Enhanced with Git commit-based versioning support
-
 metadata:
-  version: "2.0.0"  # Registry schema version
-  last_updated: "2025-11-13"
-  description: "Official registry of TFGrid Compose applications with Git commit versioning"
-  versioning_strategy: "git_commit"  # NEW: Indicates Git commit is primary version
-
-# Official TFGrid Studio Applications
+  version: 2.0.0
+  last_updated: '2025-11-13'
+  description: Official registry of TFGrid Compose applications with Git commit versioning
+  versioning_strategy: git_commit
 apps:
   official:
-    - name: tfgrid-ai-stack
-      repo: github.com/tfgrid-studio/tfgrid-ai-stack
-      description: "AI development environment with integrated coding agent"
-      pattern: single-vm
-      status: production
-      maintainer: tfgrid-studio
-      tags: [ai, development, coding, python]
-      version: b21ad74           # Latest Git commit for validation compatibility
-      
-      # Enhanced versioning with Git commit support
-      versioning:
-        primary: git_commit      # Git commit hash is primary version
-        fallback: semantic       # Semantic version as fallback
-        auto_update: true        # Auto-update when new commits available
-        
-      # Git tracking metadata
-      git:
-        default_branch: main
-        tracking: true          # Track commit changes automatically
-        auto_cache_refresh: true # Refresh cache when commits change
-        
-    - name: tfgrid-ai-agent
-      repo: github.com/tfgrid-studio/tfgrid-ai-agent
-      description: "AI coding agent with Qwen integration"
-      pattern: single-vm
-      status: production
-      maintainer: tfgrid-studio
-      tags: [ai, coding, agent, qwen]
-      version: 0e91178           # Latest Git commit for validation compatibility
-      
-      versioning:
-        primary: git_commit
-        fallback: semantic
-        auto_update: true
-        
-      git:
-        default_branch: main
-        tracking: true
-        auto_cache_refresh: true
-        
-    - name: tfgrid-gitea
-      repo: github.com/tfgrid-studio/tfgrid-gitea
-      description: "Self-hosted Git service with web interface"
-      pattern: single-vm
-      status: production
-      maintainer: tfgrid-studio
-      tags: [git, code, hosting, self-hosted]
-      version: 4a7a91d           # Latest Git commit for validation compatibility
-      
-      versioning:
-        primary: git_commit
-        fallback: semantic
-        auto_update: true
-        
-      git:
-        default_branch: main
-        tracking: true
-        auto_cache_refresh: true
-
-  # Community apps would follow same structure
+  - name: tfgrid-ai-stack
+    repo: github.com/tfgrid-studio/tfgrid-ai-stack
+    description: AI development environment with integrated coding agent
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - ai
+    - development
+    - coding
+    - python
+    version: 464d467
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
+  - name: tfgrid-ai-agent
+    repo: github.com/tfgrid-studio/tfgrid-ai-agent
+    description: AI coding agent with Qwen integration
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - ai
+    - coding
+    - agent
+    - qwen
+    version: cffec44
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
+  - name: tfgrid-gitea
+    repo: github.com/tfgrid-studio/tfgrid-gitea
+    description: Self-hosted Git service with web interface
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - git
+    - code
+    - hosting
+    - self-hosted
+    version: efcfdd2
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
   community: []
