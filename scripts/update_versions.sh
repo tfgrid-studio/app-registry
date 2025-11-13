@@ -33,8 +33,8 @@ update_app_version() {
     
     echo "Updating $app_name to version: $commit_hash"
     
-    # Use sed to update the version field
-    sed -i.tmp "s/^      version: .*/      version: $commit_hash           # Latest Git commit for validation compatibility/" "$REGISTRY_FILE"
+    # Use a simpler sed approach that doesn't have escaping issues
+    sed -i.tmp "s/version: b21ad74/version: $commit_hash/" "$REGISTRY_FILE"
 }
 
 echo "🔄 TFGrid Studio Registry Version Updater"
