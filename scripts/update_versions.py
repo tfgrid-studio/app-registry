@@ -29,9 +29,9 @@ def get_latest_commit(repo_url):
             print(f"Failed to clone {repo_url}: {result.stderr}")
             return "unknown"
         
-        # Get commit hash
+        # Get commit hash (full 40-character hash for precision)
         commit_result = subprocess.run([
-            "git", "rev-parse", "--short=7", "HEAD"
+            "git", "rev-parse", "HEAD"
         ], cwd=temp_dir, capture_output=True, text=True)
         
         # Clean up
