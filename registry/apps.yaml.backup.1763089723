@@ -1,0 +1,68 @@
+metadata:
+  version: 2.0.0
+  last_updated: '2025-11-13'
+  description: Official registry of TFGrid Compose applications with Git commit versioning
+  versioning_strategy: git_commit
+apps:
+  official:
+  - name: tfgrid-ai-stack
+    repo: github.com/tfgrid-studio/tfgrid-ai-stack
+    description: AI development environment with integrated coding agent
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - ai
+    - development
+    - coding
+    - python
+    version: 464d467
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
+  - name: tfgrid-ai-agent
+    repo: github.com/tfgrid-studio/tfgrid-ai-agent
+    description: AI coding agent with Qwen integration
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - ai
+    - coding
+    - agent
+    - qwen
+    version: cffec44
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
+  - name: tfgrid-gitea
+    repo: github.com/tfgrid-studio/tfgrid-gitea
+    description: Self-hosted Git service with web interface
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - git
+    - code
+    - hosting
+    - self-hosted
+    version: efcfdd2
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
+  community: []
