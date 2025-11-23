@@ -16,7 +16,7 @@ apps:
     - development
     - coding
     - python
-    version: 31ed1d8137b5b59858770a04ea4f18882a1cbcbe
+    version: 9b74e3aca801ffa8262ff1be94a0f477f021385b
     versioning:
       primary: git_commit
       fallback: semantic
