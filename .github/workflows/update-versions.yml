@@ -5,7 +5,8 @@ on:
     branches: [ main ]
     paths:
       - 'registry/apps.yaml'
-      - 'scripts/update_versions.sh'
+      - 'scripts/update_versions.py'
+      - '.github/workflows/update-versions.yml'
   repository_dispatch:
     types: [app-updated]
   workflow_dispatch:  # Allow manual trigger
