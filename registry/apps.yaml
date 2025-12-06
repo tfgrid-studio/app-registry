@@ -65,4 +65,67 @@ apps:
       default_branch: main
       tracking: true
       auto_cache_refresh: true
+  - name: tfgrid-wordpress
+    repo: github.com/tfgrid-studio/tfgrid-wordpress
+    description: Self-hosted WordPress with Caddy and MariaDB
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - wordpress
+    - cms
+    - blog
+    - docker
+    - caddy
+    version: main
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
+  - name: tfgrid-nextcloud
+    repo: github.com/tfgrid-studio/tfgrid-nextcloud
+    description: Nextcloud All-in-One cloud platform
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - nextcloud
+    - cloud
+    - storage
+    - collaboration
+    - docker
+    version: main
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
+  - name: tfgrid-erpnext
+    repo: github.com/tfgrid-studio/tfgrid-erpnext
+    description: Open-source ERP system (Frappe/ERPNext)
+    pattern: single-vm
+    status: production
+    maintainer: tfgrid-studio
+    tags:
+    - erpnext
+    - erp
+    - business
+    - accounting
+    - docker
+    version: main
+    versioning:
+      primary: git_commit
+      fallback: semantic
+      auto_update: true
+    git:
+      default_branch: main
+      tracking: true
+      auto_cache_refresh: true
   community: []
