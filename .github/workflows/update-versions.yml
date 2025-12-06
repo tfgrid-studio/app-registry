@@ -49,12 +49,13 @@ jobs:
     - name: Check for changes
       id: verify-changed-files
       run: |
-        if [ -n "$(git status --porcelain)" ]; then
-          echo "changed=true" >> $GITHUB_OUTPUT
-          echo "Files have been modified"
-        else
+        # Only check if apps.yaml specifically was modified
+        if git diff --quiet registry/apps.yaml 2>/dev/null; then
           echo "changed=false" >> $GITHUB_OUTPUT
-          echo "No files were changed"
+          echo "No changes to apps.yaml"
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "apps.yaml has been modified"
         fi
     
     - name: Commit and push changes
@@ -67,6 +68,11 @@ jobs:
         echo "Pushing changes..."
         git push || (echo "Push failed with GITHUB_TOKEN, trying with PAT..." && exit 1)
     
+    - name: No changes to commit
+      if: steps.verify-changed-files.outputs.changed != 'true'
+      run: |
+        echo "✅ No version updates needed - apps.yaml is up to date"
+    
     - name: Validate app entries
       run: |
         echo "🔍 Validating app entries..."
@@ -76,7 +82,7 @@ jobs:
         echo "Found $official_count official apps"
         
         # Validate each app has required fields
-        apps=("tfgrid-ai-stack" "tfgrid-ai-agent" "tfgrid-gitea")
+        apps=("tfgrid-ai-stack" "tfgrid-ai-agent" "tfgrid-gitea" "tfgrid-wordpress" "tfgrid-nextcloud" "tfgrid-erpnext")
         validation_passed=true
         
         for app in "${apps[@]}"; do
