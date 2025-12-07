@@ -168,13 +168,13 @@ We welcome contributions!
 
 - 🐛 [Report issues](https://github.com/tfgrid-studio/tfgrid-registry/issues)
 - 📝 [Submit apps](docs/submit-app.md)
-- 💬 [Join discussions](https://github.com/tfgrid-studio/tfgrid-registry/discussions)
+- 💬 [Join discussions](https://github.com/orgs/tfgrid-studio/discussions)
 
 ## Support
 
 - **Documentation**: [docs.tfgrid.studio](https://docs.tfgrid.studio)
 - **Issues**: [GitHub Issues](https://github.com/tfgrid-studio/tfgrid-registry/issues)
-- **Community**: [Discussions](https://github.com/tfgrid-studio/tfgrid-registry/discussions)
+- **Community**: [Discussions](https://github.com/orgs/tfgrid-studio/discussions)
 
 
 Apache 2.0 License - See [LICENSE](LICENSE) for details.
