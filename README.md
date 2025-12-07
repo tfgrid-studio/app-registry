@@ -1,4 +1,4 @@
-# TFGrid App Registry
+# TFGrid Registry
 
 Official registry of applications for TFGrid Compose - automatically validated and processed via CI/CD.
 
@@ -13,7 +13,7 @@ tfgrid-compose up tfgrid-ai-agent
 ## Registry Structure
 
 ```
-app-registry/
+tfgrid-registry/
 ├── registry/
 │   ├── apps.yaml              # Main official apps registry
 │   └── verified/              # Verified community apps
@@ -166,15 +166,15 @@ This ensures `tfgrid-compose` always gets the latest versions while maintaining 
 
 We welcome contributions!
 
-- 🐛 [Report issues](https://github.com/tfgrid-studio/app-registry/issues)
+- 🐛 [Report issues](https://github.com/tfgrid-studio/tfgrid-registry/issues)
 - 📝 [Submit apps](docs/submit-app.md)
-- 💬 [Join discussions](https://github.com/tfgrid-studio/app-registry/discussions)
+- 💬 [Join discussions](https://github.com/tfgrid-studio/tfgrid-registry/discussions)
 
 ## Support
 
 - **Documentation**: [docs.tfgrid.studio](https://docs.tfgrid.studio)
-- **Issues**: [GitHub Issues](https://github.com/tfgrid-studio/app-registry/issues)
-- **Community**: [Discussions](https://github.com/tfgrid-studio/app-registry/discussions)
+- **Issues**: [GitHub Issues](https://github.com/tfgrid-studio/tfgrid-registry/issues)
+- **Community**: [Discussions](https://github.com/tfgrid-studio/tfgrid-registry/discussions)
 
 
 Apache 2.0 License - See [LICENSE](LICENSE) for details.

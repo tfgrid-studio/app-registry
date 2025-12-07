@@ -65,8 +65,8 @@ tfgrid-compose down
 ### Step 3: Fork Registry Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/app-registry
-cd app-registry
+git clone https://github.com/YOUR-USERNAME/tfgrid-registry
+cd tfgrid-registry
 git checkout -b add-your-app
 ```
 
@@ -214,8 +214,8 @@ See official apps for reference:
 
 ## Need Help?
 
-- **Questions**: [Open a discussion](https://github.com/tfgrid-studio/app-registry/discussions)
-- **Issues**: [Report problems](https://github.com/tfgrid-studio/app-registry/issues)
+- **Questions**: [Open a discussion](https://github.com/tfgrid-studio/tfgrid-registry/discussions)
+- **Issues**: [Report problems](https://github.com/tfgrid-studio/tfgrid-registry/issues)
 - **Guidelines**: See [app-guidelines.md](app-guidelines.md)
 
 ---
