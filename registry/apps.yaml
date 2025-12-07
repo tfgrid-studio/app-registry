@@ -36,7 +36,7 @@ apps:
     - coding
     - agent
     - qwen
-    version: 8442b30289a2e37a6be2a2362b1ef654367f50c2
+    version: 246a0ad098d38a8a1fa36275995c74ff06bf411c
     versioning:
       primary: git_commit
       fallback: semantic
