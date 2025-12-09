@@ -52,8 +52,11 @@ def update_registry_versions(registry_file):
     # App repositories to update
     apps = {
         "tfgrid-ai-stack": "https://github.com/tfgrid-studio/tfgrid-ai-stack",
-        "tfgrid-ai-agent": "https://github.com/tfgrid-studio/tfgrid-ai-agent", 
-        "tfgrid-gitea": "https://github.com/tfgrid-studio/tfgrid-gitea"
+        "tfgrid-ai-agent": "https://github.com/tfgrid-studio/tfgrid-ai-agent",
+        "tfgrid-gitea": "https://github.com/tfgrid-studio/tfgrid-gitea",
+        "tfgrid-wordpress": "https://github.com/tfgrid-studio/tfgrid-wordpress",
+        "tfgrid-nextcloud": "https://github.com/tfgrid-studio/tfgrid-nextcloud",
+        "tfgrid-erpnext": "https://github.com/tfgrid-studio/tfgrid-erpnext",
     }
     
     # Create backup
