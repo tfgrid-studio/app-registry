@@ -16,7 +16,7 @@ apps:
     - development
     - coding
     - python
-    version: beb2af47a52cd24d8f9867a40d2ef8ee06b648cc
+    version: 4368487ace54e3d81c16b33947043db929032cba
     versioning:
       primary: git_commit
       fallback: semantic
@@ -36,7 +36,7 @@ apps:
     - coding
     - agent
     - qwen
-    version: 246a0ad098d38a8a1fa36275995c74ff06bf411c
+    version: f6e5cc9cd9ca2339bfb155ee44392127eeb2162b
     versioning:
       primary: git_commit
       fallback: semantic
@@ -56,7 +56,7 @@ apps:
     - code
     - hosting
     - self-hosted
-    version: b8b8f5d07da13546eb86ba133c2823e150f0e523
+    version: e959b83f82d6cb236eeb0b2a42d300f5a837695d
     versioning:
       primary: git_commit
       fallback: semantic
