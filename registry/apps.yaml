@@ -77,7 +77,7 @@ apps:
     - blog
     - docker
     - caddy
-    version: d3d43793f82e6961b1fe96d037d0689efa12a7d6
+    version: 365dfa83e20d76d6bb7659ba7a5ea954f2cc0233
     versioning:
       primary: git_commit
       fallback: semantic
